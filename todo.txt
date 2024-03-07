@@ -1,0 +1,4 @@
+add jobs (CRUD)
+jobs per comp
+applicants per jobs
+selected/none selected 

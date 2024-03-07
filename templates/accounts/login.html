@@ -1,0 +1,26 @@
+{% extends 'accounts/base.html' %}
+
+{% block subheading %}
+Ready to start your digital experience? We got you covered as always.
+Sign in to get real time updates and stay connected with the world🚀
+{% endblock subheading %}
+
+{% block content %}
+
+<form class="p-4 p-md-5 border rounded-3 bg-light" method="POST">
+    {% csrf_token %}
+    <div class="form-floating mb-3">
+        <input type="email" class="form-control" name="username" id="floatingInput">
+        <label for="floatingInput">Email address</label>
+    </div>
+    <div class="form-floating mb-3">
+        <input type="password" name="password" class="form-control" id="floatingPassword">
+        <label for="floatingPassword">Password</label>
+    </div>
+    <button class="w-100 btn btn-lg btn-primary" type="submit">Sign In</button>
+    <hr class="my-4">
+    <small class="text-muted">Don't have an account? <a href="{% url 'register' %}">Sign Up</a></small> <br>
+    <small class="text-muted">Forgot Password? <a href="{% url 'reset_password' %}">Reset Now</a></small>
+</form>
+
+{% endblock content %}
