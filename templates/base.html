@@ -13,7 +13,7 @@
     <title>Django Jobs</title>
 </head>
 
-<body>
+<body class="d-flex flex-column min-vh-100">
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <div class="container-fluid">
             <a class="navbar-brand" href="#">Django Jobs</a>
@@ -23,31 +23,31 @@
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                {% if request.user.is_recruiter %}
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item">
                         <a class="nav-link active" aria-current="page" href="#">Home</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Link</a>
-                    </li>
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
                             data-bs-toggle="dropdown" aria-expanded="false">
-                            Dropdown
+                            Company
                         </a>
                         <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <li><a class="dropdown-item" href="#">Action</a></li>
-                            <li><a class="dropdown-item" href="#">Another action</a></li>
-                            <li>
-                                <hr class="dropdown-divider">
-                            </li>
-                            <li><a class="dropdown-item" href="#">Something else here</a></li>
+                            {% if not request.user.has_company %}
+                            <li><a class="dropdown-item" href="{% url 'add-company' %}">Add Company</a></li>
+                            {% else %}
+                            <li><a class="dropdown-item" href="{% url 'update-company' request.user.company.pk %}">Update Company Info</a></li>
+                            {% endif %}
+                            <li><a class="dropdown-item" href="{% url 'company-details' request.user.company.pk %}">Company Details</a></li>
                         </ul>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
                     </li>
                 </ul>
+                {% endif %}
+                <a href="{% url 'logout' %}" class="btn btn-warning btn-sm">Logout</a>
                 <!-- <form class="d-flex">
                     <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
                     <button class="btn btn-outline-success" type="submit">Search</button>
@@ -56,7 +56,13 @@
         </div>
     </nav>
 
-    <div class="container mt-5">
+    <div class="container mt-5 mb-5">
+
+        {% if not request.user.has_company %}
+        <div class="alert alert-danger" role="alert">
+            You have not added a company. Please add one to create job ads. <a href="{% url 'add-company' %}">Add a Company</a>
+        </div>
+        {% endif %}
 
         {% if messages %}
         {% for message in messages %}
@@ -70,6 +76,12 @@
         {% endblock content %}
         
     </div>
+
+    <footer class="footer mt-auto py-3 bg-light">
+        <div class="container text-center">
+            <span class="text-muted center">Your Favorite Developer, Chidiebere Ohiri ❤️</span>
+        </div>
+    </footer>
 
     <!-- Optional JavaScript; choose one of the two! -->
 

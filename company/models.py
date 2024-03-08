@@ -10,7 +10,9 @@ class Company(models.Model):
     country = models.CharField(max_length=20, choices=(('Nigeria', 'Nigeria'), ))
     established_on = models.PositiveIntegerField() # year company was established
     employees_total = models.PositiveIntegerField()
+    industry = models.CharField(max_length=20, choices=(('Tech', 'Tech'), ('Mining', 'Mining'), ('Health', 'Health')), null=True)
     user = models.OneToOneField(User, on_delete=models.CASCADE)
+    description = models.CharField(max_length=200, null=True)
 
     def __str__(self):
         return self.name 

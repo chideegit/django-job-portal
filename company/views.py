@@ -29,7 +29,6 @@ def add_company(request):
         context = {'form':form}
     return render(request, 'company/add_company.html', context)
 
-@user_passes_test
 def update_company(request, pk):
     company = Company.objects.get(pk=pk)
     if request.method == 'POST':

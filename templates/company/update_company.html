@@ -1,0 +1,63 @@
+{% extends 'base.html' %}
+{% load widget_tweaks %}
+
+{% block content %}
+
+<form class="p-4 p-md-5 border rounded-3 bg-light" method="POST">
+    {% csrf_token %}
+    <div class="row">
+        <div class="col-md-6">
+            <div class="form-floating mb-3">
+                {% render_field form.name class="form-control" %}
+                <label for="floatingInput">Company Name</label>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="form-floating mb-3">
+                {% render_field form.physical_address class="form-control" %}
+            <label for="floatingInput">Address</label>
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <div class="form-floating mb-3">
+                {% render_field form.established_on class="form-control" %}
+                <label for="floatingInput">Year Established</label>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="form-floating mb-3">
+                {% render_field form.state class="form-control" %}
+            <label for="floatingInput">Select State</label>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="form-floating mb-3">
+                {% render_field form.country class="form-control" %}
+            <label for="floatingInput">Select Country</label>
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <div class="form-floating mb-3">
+                {% render_field form.employees_total class="form-control" %}
+                <label for="floatingInput">Employee Total</label>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="form-floating mb-3">
+                {% render_field form.industry class="form-control" %}
+            <label for="floatingInput">Industry</label>
+            </div>
+        </div>
+        <div class="col-md-12">
+            <div class="form-floating mb-3">
+                {% render_field form.description class="form-control" %}
+            <label for="floatingInput">Description</label>
+            </div>
+        </div>
+    </div>
+    <button class="w-100 btn btn-lg btn-primary" type="submit">Submit</button>
+</form>
+
+{% endblock content %}
