@@ -42,6 +42,17 @@
                             <li><a class="dropdown-item" href="{% url 'company-details' request.user.company.pk %}">Company Details</a></li>
                         </ul>
                     </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                            data-bs-toggle="dropdown" aria-expanded="false">
+                            Jobs
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <li><a class="dropdown-item" href="{% url 'add-job' %}">Add Job</a></li>
+                            <li><a class="dropdown-item" href="{% url 'update-company' request.user.company.pk %}">Update Company Info</a></li>
+                            <li><a class="dropdown-item" href="{% url 'company-details' request.user.company.pk %}">Company Details</a></li>
+                        </ul>
+                    </li>
                     <li class="nav-item">
                         <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
                     </li>

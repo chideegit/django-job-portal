@@ -13,3 +13,13 @@ def check_company(view_func):
         response = view_func(request, *args, **kwargs) 
         return response
     return wrapper
+
+def no_company_no_job(view_func):
+    def wrapper(request, *args, **kwargs):
+        user = User.objects.get(id=request.user.id)
+        if not user.has_company:
+            messages.warning(request, 'Permission Denied. You must add a company before posting jobs')
+            return redirect('dashboard')
+        response = view_func(request, *args, **kwargs) 
+        return response
+    return wrapper

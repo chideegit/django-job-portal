@@ -40,7 +40,8 @@ INSTALLED_APPS = [
 
     'accounts', 
     'company', 
-    'dashboard', 
+    'dashboard',
+    'job',
 
     'widget_tweaks'
 ]
