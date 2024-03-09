@@ -51,4 +51,9 @@ def jobs_per_company(request, pk):
     context = {'jobs':jobs}
     return render(request, 'job/jobs_per_company.html', context)
 
-
+@login_required
+def delete_job(request, pk):
+    job = Job.objects.get(pk=pk)
+    job.delete()
+    messages.success(request, 'Job ad has been successfully deleted from the database')
+    return redirect('dashboard')

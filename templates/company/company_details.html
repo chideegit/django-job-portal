@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+{% load humanize %}
 
 {% block content %}
 
@@ -21,6 +22,7 @@
                     <li class="fs-4">Located at {{company.physical_address}}, {{company.state}}, {{company.country}}. </li>
                     <li class="fs-4">{{company.employees_total}} Employees</li>
                     <li class="fs-4">{{company.industry}} Industry</li>
+                    <li class="fs-4"><b>{{company.job_set.all.count}}</b> job{{company.job_set.all.count|pluralize}} available</li>
                 </ul>
                
             </div>
@@ -36,12 +38,13 @@
                 <div class="card-body">
                     <span class="badge bg-primary mb-1">{{job.job_location}}</span>
                     <h5 class="card-title">{{job.title}}</h5>
-                    <p class="card-text">This is a wider card with supporting text below as a natural lead-in to
-                        additional content. This content is a little bit longer.</p>
+                    <p class="card-text">{{job.description|slice:"200"}}</p>
                     <a href="#" class="btn btn-outline-primary btn-sm">See More</a>
+                    <a href="{% url 'update-job' job.pk %}" class="btn btn-warning btn-sm"><i class="fa fa-pencil"></i></a>
+                    <a href="{% url 'delete-job' job.pk %}" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i></a>
                 </div>
                 <div class="card-footer">
-                    <small class="text-muted">Last updated 3 mins ago</small>
+                    <small class="text-muted">Posted {{job.posted_on|naturaltime|title}}</small>
                 </div>
             </div>
         </div>

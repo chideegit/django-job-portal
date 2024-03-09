@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+{% load widget_tweaks %}
+
+{% block content %}
+
+<form class="p-4 p-md-5 border rounded-3 bg-light" method="POST">
+    {% csrf_token %}
+    <div class="row">
+        <div class="col-md-6">
+            <div class="form-floating mb-3">
+                {% render_field form.title class="form-control" %}
+                <label for="floatingInput">Title</label>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="form-floating mb-3">
+                {% render_field form.job_location class="form-control" %}
+            <label for="floatingInput">Job Location</label>
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <div class="form-floating mb-3">
+                {% render_field form.job_type class="form-control" %}
+                <label for="floatingInput">Job Type</label>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="form-floating mb-3">
+                {% render_field form.end_date type="date" class="form-control" %}
+            <label for="floatingInput">End Date</label>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="form-floating mb-3">
+                {% render_field form.description class="form-control" %}
+                <label for="floatingInput">description</label>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="form-floating mb-3">
+                {% render_field form.requirements class="form-control" %}
+            <label for="floatingInput">Requirement</label>
+            </div>
+        </div>
+    </div>
+    <button class="w-100 btn btn-lg btn-primary" type="submit">Submit</button>
+</form>
+
+{% endblock content %}

@@ -47,6 +47,6 @@ def update_company(request, pk):
 
 def company_details(request, pk):
     company = Company.objects.get(pk=pk)
-    jobs = company.job_set.all()
+    jobs = company.job_set.all().order_by('-posted_on')[:3]
     context = {'company':company, 'jobs':jobs}
     return render(request, 'company/company_details.html', context)
